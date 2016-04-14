@@ -17,6 +17,7 @@
     "url": "git://github.com/mongodb-js/hadron-build.git"
   },
   "dependencies": {
+    "ampersand-state": "^5.0.1",
     "asar": "^0.10.0",
     "async": "^2.0.0-rc.3",
     "aws-sdk": "^2.3.2",

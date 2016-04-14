@@ -94,7 +94,7 @@ let removeGitHubReleaseAssetIfExists = (CONFIG, release, asset) => {
     return p.resolve(true);
   });
   return p.promise;
-}
+};
 
 let doGitHubReleaseAssetUpload = (CONFIG, release, asset) => {
   const opts = {
@@ -144,7 +144,7 @@ let maybePublishGitHubRelease = (CONFIG) => {
 
   getOrCreateGitHubRelease(CONFIG)
     .then((release) => {
-      return CONFIG.assets.map((asset) => uploadGitHubReleaseAsset(CONFIG, release, asset))
+      return CONFIG.assets.map((asset) => uploadGitHubReleaseAsset(CONFIG, release, asset));
     });
 };
 
@@ -229,8 +229,7 @@ exports.builder = {};
 _.assign(exports.builder, config.options);
 
 exports.handler = function(argv) {
-  cli.argv = argv;
-  var CONFIG = config.get(cli);
+  var CONFIG = config.get(argv);
 
   maybeUploadEvergreenAssets(CONFIG)
     .then(() => maybePublishGitHubRelease(CONFIG))

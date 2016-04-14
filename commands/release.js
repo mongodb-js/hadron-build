@@ -348,12 +348,10 @@ let createModuleCache = (CONFIG, done) => {
 
 exports.builder = {};
 
-_.assign(exports.builder, config.options, ui.builder, verify.builder);
+_.assign(exports.builder, ui.builder, verify.builder);
 
 exports.handler = (argv) => {
-  cli.argv = argv;
-
-  let CONFIG = config.get(cli);
+  let CONFIG = config.get(argv);
 
   var tasks = _.flatten([
     function(cb) {

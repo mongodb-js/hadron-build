@@ -18,14 +18,6 @@ exports.builder = {
   }
 };
 
-_.assign(exports.builder, config.options);
-
-const serialize = (CONFIG) => {
-  return _.omit(CONFIG, function(value) {
-    return _.isFunction(value) || _.isRegExp(value);
-  });
-};
-
 const toTable = (CONFIG) => {
   /**
    * Print the assembled `CONFIG` data as a nice table.
@@ -43,15 +35,14 @@ const toTable = (CONFIG) => {
 };
 
 exports.handler = (argv) => {
-  cli.argv = argv;
-
-  let CONFIG = config.get(cli);
+  let CONFIG = config.get(argv);
+  console.log(CONFIG.sourcedir)
   /* eslint no-console: 0 */
   if (cli.argv.format === 'json') {
-    console.log(JSON.stringify(serialize(CONFIG), null, 2));
+    console.log(JSON.stringify(CONFIG, null, 2));
   } else if (cli.argv.format === 'yaml') {
-    console.log(yaml.dump(serialize(CONFIG)));
+    console.log(yaml.dump(CONFIG.serialize()));
   } else {
-    console.log(toTable(serialize(CONFIG)));
+    console.log(toTable(CONFIG.serialize()));
   }
 };
