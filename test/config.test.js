@@ -128,8 +128,8 @@ describe('hadron-build::config::win32', () => {
     expect(res.windows_setup_label).to.equal('Windows Installer');
     expect(res.windows_zip_filename).to.equal('Hadron-windows.zip');
     expect(res.windows_zip_label).to.equal('Windows Zip');
-    expect(res.windows_nupkg_full_filename).to.equal('hadron_build-1.2.0-full.nupkg');
-    expect(res.windows_nupkg_full_label).to.equal('hadron_build-1.2.0-full.nupkg');
+    expect(res.windows_nupkg_full_filename).to.equal('Hadron-1.2.0-full.nupkg');
+    expect(res.windows_nupkg_full_label).to.equal('Hadron-1.2.0-full.nupkg');
   });
 
   it('should have the platform specific installer options', () => {
@@ -147,7 +147,6 @@ describe('hadron-build::config::win32', () => {
     expect(opts).to.have.property('productName');
     expect(opts).to.have.property('description');
     expect(opts).to.have.property('name');
-    expect(opts).to.have.property('id');
   //  { loadingGif: undefined,
   //    signWithParams: null,
   //    iconUrl: undefined,
@@ -160,7 +159,6 @@ describe('hadron-build::config::win32', () => {
   //    title: 'Hadron',
   //    productName: 'Hadron',
   //    description: 'Tooling for Hadron apps.',
-  //    name: 'hadron_build',
-  //    id: 'hadron_build' },
+  //    name: 'Hadron'},
   });
 });
