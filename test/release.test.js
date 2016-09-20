@@ -28,7 +28,7 @@ describe('hadron-build::release', function() {
   var CONFIG; /* eslint no-unused-vars:0 */
 
   before( (done) => {
-    if (CONFIG.platform !== 'darwin') {
+    if (process.platform !== 'darwin') {
       return this.skip();
     }
 
