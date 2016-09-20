@@ -31,7 +31,7 @@ describe('hadron-build::release', function() {
     if (CONFIG.platform !== 'darwin') {
       return this.skip();
     }
-    
+
     fs.remove(path.join(__dirname, 'fixtures', 'hadron-app', 'dist'), (_err) => {
       if (_err) {
         return done(_err);
