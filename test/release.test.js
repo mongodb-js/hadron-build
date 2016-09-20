@@ -28,6 +28,10 @@ describe('hadron-build::release', function() {
   var CONFIG; /* eslint no-unused-vars:0 */
 
   before( (done) => {
+    if (CONFIG.platform !== 'darwin') {
+      return this.skip();
+    }
+    
     fs.remove(path.join(__dirname, 'fixtures', 'hadron-app', 'dist'), (_err) => {
       if (_err) {
         return done(_err);
