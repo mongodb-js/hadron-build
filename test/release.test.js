@@ -25,7 +25,7 @@ const withDefaults = (argv) => {
 
 describe('hadron-build::release', function() {
   this.timeout(60000);
-  var CONFIG; /* eslint no-unused-vars:0 */
+  var CONFIG = null;
 
   before( (done) => {
     if (process.platform !== 'darwin') {
