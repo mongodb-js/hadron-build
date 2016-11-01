@@ -36,7 +36,7 @@
     "electron-prebuilt": "1.2.8",
     "electron-winstaller": "^2.3.3",
     "flatnest": "^1.0.0",
-    "fs-extra": "^0.26.5",
+    "fs-extra": "^1.0.0",
     "github": "^0.2.4",
     "glob": "^5.0.15",
     "got": "^6.3.0",
