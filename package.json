@@ -37,7 +37,7 @@
     "electron-winstaller": "^2.3.3",
     "flatnest": "^1.0.0",
     "fs-extra": "^0.26.5",
-    "github": "^0.2.4",
+    "github": "^6.0.2",
     "glob": "^5.0.15",
     "got": "^6.3.0",
     "hadron-compile-cache": "^0.3.0",
