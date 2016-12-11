@@ -28,7 +28,7 @@ describe('hadron-build::release', function() {
   var CONFIG = {};
 
   before( (done) => {
-    if (process.platform !== 'darwin') {
+    if (process.platform === 'windows') {
       return done();
     }
 
