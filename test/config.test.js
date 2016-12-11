@@ -16,32 +16,6 @@ const getConfig = (argv) => {
 // const windows = ()
 
 describe('hadron-build::config', () => {
-  describe('Release channel support', () => {
-    it('should use the cannonical for Stable releases', () => {
-      let res = getConfig({version: '1.2.0', product_name: 'Hadron'});
-      expect(res.packagerOptions.name).to.equal('Hadron');
-      expect(res.channel).to.equal('stable');
-    });
-
-    describe('For releases *not* on the stable channel', () => {
-      it('should detect Beta releases and ', () => {
-        let res = getConfig({version: '1.2.0-beta.1', product_name: 'Hadron'});
-        expect(res.packagerOptions.name).to.equal('Hadron Beta');
-        expect(res.channel).to.equal('beta');
-      });
-
-      it('should allow for release channels other than Beta', () => {
-        let alpha = getConfig({version: '1.2.0-alpha.1', product_name: 'Hadron'});
-        expect(alpha.packagerOptions.name).to.equal('Hadron Alpha');
-        expect(alpha.channel).to.equal('alpha');
-
-        let rc = getConfig({version: '1.2.0-custom.5', product_name: 'Hadron'});
-        expect(rc.packagerOptions.name).to.equal('Hadron Custom');
-        expect(rc.channel).to.equal('custom');
-      });
-    });
-  });
-
   describe('Only on macOS', () => {
     const macOS = {
       version: '1.2.0',
@@ -61,6 +35,30 @@ describe('hadron-build::config', () => {
       let alpha = getConfig(_.defaults({version: '1.2.0-alpha.1'}, macOS));
       expect(alpha.packagerOptions['app-bundle-id']).to.equal('com.mongodb.hadron.alpha');
     });
+
+    // it('should use the cannonical for Stable releases', () => {
+    //   let res = getConfig({version: '1.2.0', product_name: 'Hadron'});
+    //   expect(res.packagerOptions.name).to.equal('Hadron');
+    //   expect(res.channel).to.equal('stable');
+    // });
+    //
+    // describe('For releases *not* on the stable channel', () => {
+    //   it('should detect Beta releases and ', () => {
+    //     let res = getConfig({version: '1.2.0-beta.1', product_name: 'Hadron'});
+    //     expect(res.packagerOptions.name).to.equal('Hadron Beta');
+    //     expect(res.channel).to.equal('beta');
+    //   });
+    //
+    //   it('should allow for release channels other than Beta', () => {
+    //     let alpha = getConfig({version: '1.2.0-alpha.1', product_name: 'Hadron'});
+    //     expect(alpha.packagerOptions.name).to.equal('Hadron Alpha');
+    //     expect(alpha.channel).to.equal('alpha');
+    //
+    //     let rc = getConfig({version: '1.2.0-custom.5', product_name: 'Hadron'});
+    //     expect(rc.packagerOptions.name).to.equal('Hadron Custom');
+    //     expect(rc.channel).to.equal('custom');
+    //   });
+    // });
   });
 
   describe('Only on Linux', () => {
