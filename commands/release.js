@@ -443,7 +443,6 @@ exports.run = (argv, done) => {
     };
   };
 
-
   const tasks = _.flatten([
     function(cb) {
       verify.tasks(argv)
