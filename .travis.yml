@@ -4,5 +4,6 @@ node_js:
   - 6
 script: npm run-script ci
 cache:
+  yarn: true
   directories:
     - node_modules
