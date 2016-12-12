@@ -16,6 +16,56 @@ const getConfig = (argv) => {
 // const windows = ()
 
 describe('hadron-build::config', () => {
+  describe('Release channel support', () => {
+    const channels = {
+      stable: getConfig({
+        name: 'hadron-app',
+        version: '1.2.0',
+        product_name: 'Hadron'
+      }),
+      beta: getConfig({
+        name: 'hadron-app',
+        version: '1.2.0-beta.1',
+        product_name: 'Hadron'
+      }),
+      custom: getConfig({
+        name: 'hadron-app',
+        version: '1.2.0-custom.5',
+        product_name: 'Hadron'
+      })
+    };
+
+    it('should have the right versions', () => {
+      expect(channels.stable.version).to.equal('1.2.0');
+      expect(channels.beta.version).to.equal('1.2.0-beta.1');
+      expect(channels.custom.version).to.equal('1.2.0-custom.5');
+    });
+
+    it('should detect the channel from the version', () => {
+      expect(channels.stable.channel).to.equal('stable');
+      expect(channels.beta.channel).to.equal('beta');
+      expect(channels.custom.channel).to.equal('custom');
+    });
+
+    it('should not include channel in the product name on stable', () => {
+      expect(channels.stable.productName).to.equal('Hadron');
+    });
+
+    it('should not include channel in the slug on stable', () => {
+      expect(channels.stable.slug).to.equal('hadron-app');
+    });
+
+    describe('For releases *not* on the stable channel', () => {
+      it('should add the channel as a suffix to the product name', () => {
+        expect(channels.beta.productName).to.equal('Hadron Beta');
+        expect(channels.custom.productName).to.equal('Hadron Custom');
+      });
+      it('should add the channel as a suffix to the slug', () => {
+        expect(channels.beta.slug).to.equal('hadron-app-beta');
+        expect(channels.custom.slug).to.equal('hadron-app-custom');
+      });
+    });
+  });
   describe('Only on macOS', () => {
     const macOS = {
       version: '1.2.0',
@@ -32,46 +82,31 @@ describe('hadron-build::config', () => {
       let beta = getConfig(_.defaults({version: '1.2.0-beta.1'}, macOS));
       expect(beta.packagerOptions['app-bundle-id']).to.equal('com.mongodb.hadron.beta');
 
-      let alpha = getConfig(_.defaults({version: '1.2.0-alpha.1'}, macOS));
-      expect(alpha.packagerOptions['app-bundle-id']).to.equal('com.mongodb.hadron.alpha');
+      let alpha = getConfig(_.defaults({version: '1.2.0-custom.5'}, macOS));
+      expect(alpha.packagerOptions['app-bundle-id']).to.equal('com.mongodb.hadron.custom');
     });
-
-    // it('should use the cannonical for Stable releases', () => {
-    //   let res = getConfig({version: '1.2.0', product_name: 'Hadron'});
-    //   expect(res.packagerOptions.name).to.equal('Hadron');
-    //   expect(res.channel).to.equal('stable');
-    // });
-    //
-    // describe('For releases *not* on the stable channel', () => {
-    //   it('should detect Beta releases and ', () => {
-    //     let res = getConfig({version: '1.2.0-beta.1', product_name: 'Hadron'});
-    //     expect(res.packagerOptions.name).to.equal('Hadron Beta');
-    //     expect(res.channel).to.equal('beta');
-    //   });
-    //
-    //   it('should allow for release channels other than Beta', () => {
-    //     let alpha = getConfig({version: '1.2.0-alpha.1', product_name: 'Hadron'});
-    //     expect(alpha.packagerOptions.name).to.equal('Hadron Alpha');
-    //     expect(alpha.channel).to.equal('alpha');
-    //
-    //     let rc = getConfig({version: '1.2.0-custom.5', product_name: 'Hadron'});
-    //     expect(rc.packagerOptions.name).to.equal('Hadron Custom');
-    //     expect(rc.channel).to.equal('custom');
-    //   });
-    // });
   });
 
   describe('Only on Linux', () => {
     const linux = {
-      name: 'hadron',
+      name: 'hadron-app',
       version: '1.2.0',
       product_name: 'Hadron',
       platform: 'linux'
     };
 
-    it('should use a dasherized name', () => {
-      let res = getConfig(linux);
-      expect(res.packagerOptions.name).to.equal('hadron');
+    const c = getConfig(linux);
+    const assetNames = _.map(c.assets, 'name');
+    it('should produce a tarball asset', () => {
+      expect(assetNames).to.contain('hadron-app-1.2.0-linux-x64.tar.gz');
+    });
+
+    it('should produce a debian package asset', () => {
+      expect(assetNames).to.contain('hadron-app-1.2.0-linux-x64.deb');
+    });
+
+    it('should produce a redhat package manager asset', () => {
+      expect(assetNames).to.include('hadron-app.1.2.0.linux.x64.rpm');
     });
   });
 
