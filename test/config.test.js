@@ -17,8 +17,6 @@ const getConfig = (argv) => {
   return config.get(cli);
 };
 
-// const windows = ()
-
 describe('hadron-build::config', () => {
   describe('Release channel support', () => {
     const channels = {
@@ -101,7 +99,6 @@ describe('hadron-build::config', () => {
 
     const c = getConfig(linux);
     const assetNames = _.map(c.assets, 'name');
-    console.log('assets', c.assets);
     it('should produce a tarball asset', () => {
       expect(assetNames).to.contain('hadron-app-1.2.0-linux-x64.tar.gz');
     });

@@ -49,6 +49,33 @@
 }
 ```
 
+
+### build.win32
+
+#### build.win32.icon
+
+#### build.win32.favicon_url
+
+#### build.win32.loading_gif
+
+### build.darwin
+
+#### build.darwin.icon
+
+#### build.darwin.dmg_background
+
+#### build.darwin.codesign_identity
+
+#### build.darwin.codesign_sha1
+
+#### build.darwin.app_bundle_id
+
+#### build.darwin.app_category_type
+
+### build.linux
+
+#### build.linux.icon
+
 ## CLI Usage
 
 ```bash
