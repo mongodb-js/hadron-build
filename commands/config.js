@@ -136,7 +136,6 @@ const toTable = (CONFIG) => {
 };
 
 exports.handler = (argv) => {
-  console.log('config argv', argv);
   cli.argv = argv;
 
   let CONFIG = config.get(cli);
