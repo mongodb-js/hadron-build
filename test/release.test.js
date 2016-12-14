@@ -24,7 +24,7 @@ const withDefaults = (argv) => {
 };
 
 if (process.platform === 'win32') {
-  console.warn('Functional tests on appveyor too slow. Skipping.');
+  // Functional tests on appveyor too slow. Skipping.
 } else {
   describe('hadron-build::release', function() {
     this.timeout(300000);
