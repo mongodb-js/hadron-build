@@ -3,7 +3,7 @@
   "description": "Hadron build's test fixture app.",
   "version": "1.2.0-dev",
   "main": "main.js",
-  "productName": "Hadron App",
+  "productName": "Hadron",
   "authors": "MongoDB Inc.",
   "config": {
     "hadron": {

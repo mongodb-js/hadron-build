@@ -10,28 +10,26 @@ exports.command = 'info';
 
 exports.describe = 'Display project info.';
 
-exports.builder = (yargs) => {
-  return yargs.options({
-    verbose: {
-      describe: 'Confused or trying to track down a bug and want lots of debug output?',
-      type: 'boolean',
-      default: false
-    },
-    format: {
-      choices: ['table', 'yaml', 'json'],
-      description: 'What output format would you like?',
-      default: 'table'
-    },
-    flatten: {
-      description: 'Flatten the config object into dot notation',
-      type: 'boolean',
-      default: false
-    },
-    dir: {
-      description: 'Project root directory',
-      default: process.getcwd()
-    }
-  });
+exports.builder = {
+  verbose: {
+    describe: 'Confused or trying to track down a bug and want lots of debug output?',
+    type: 'boolean',
+    default: false
+  },
+  format: {
+    choices: ['table', 'yaml', 'json'],
+    description: 'What output format would you like?',
+    default: 'table'
+  },
+  flatten: {
+    description: 'Flatten the config object into dot notation',
+    type: 'boolean',
+    default: false
+  },
+  dir: {
+    description: 'Project root directory',
+    default: process.cwd()
+  }
 };
 
 

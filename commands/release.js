@@ -28,7 +28,6 @@ const license = require('electron-license');
 const ModuleCache = require('hadron-module-cache');
 const CompileCache = require('hadron-compile-cache');
 
-const pkg = require('../lib/package');
 const ui = require('./ui');
 const verify = require('./verify');
 
@@ -72,7 +71,7 @@ const createCompileCache = (CONFIG, done) => {
       CompileCache.compileFileAtPath(compiler, file);
     });
     // Write the compile cache mappings to the package.json.
-    var metadata = pkg.get(appDir);
+    var metadata = CONFIG.pkg;
     metadata[COMPILE_CACHE_MAPPINGS] = CompileCache.digestMappings;
     fs.writeFile(metadata._path, JSON.stringify(metadata, null, 2), done);
   });
@@ -128,7 +127,7 @@ const symlinkExecutable = (CONFIG, done) => {
   if (CONFIG.platform === 'darwin') {
     cli.debug('Ensuring `Contents/MacOS/Electron` is symlinked');
     const cwd = process.cwd();
-    process.chdir(path.join(CONFIG.appPath, 'Contents', 'MacOS'));
+    process.chdir(CONFIG.dest(`${CONFIG.productName}-darwin-x64`, 'Contents', 'MacOS'));
 
     fs.ensureSymlink(CONFIG.productName, 'Electron', function(_err) {
       process.chdir(cwd);
@@ -241,7 +240,7 @@ const transformPackageJson = (CONFIG, done) => {
     'config.hadron.build'
   ];
 
-  let contents = _.omit(pkg, packageKeysToRemove);
+  let contents = _.omit(CONFIG.pkg, packageKeysToRemove);
 
   _.assign(contents, {
     productName: CONFIG.productName,
@@ -412,7 +411,7 @@ const createModuleCache = (CONFIG, done) => {
   const appDir = path.join(CONFIG.resources, 'app');
   ModuleCache.create(appDir);
 
-  let metadata = pkg.get(appDir);
+  let metadata = CONFIG.pkg;
 
   for (let folder in _.get(metadata, '_compassModuleCache.folders')) {
     if (_.includes(folder.paths, '')) {
@@ -422,18 +421,23 @@ const createModuleCache = (CONFIG, done) => {
   fs.writeFile(metadata._path, JSON.stringify(metadata, null, 2), done);
 };
 
-exports.builder = {};
+exports.builder = {
+  dir: {
+    description: 'Project root directory',
+    default: process.cwd()
+  }
+};
 
 _.assign(exports.builder, ui.builder, verify.builder);
 
 exports.run = (argv, done) => {
   cli.argv = argv;
 
-  const CONFIG = config.get(cli);
+  const target = new Target(argv.dir);
   const task = (name, fn) => {
     return function(cb) {
       cli.debug(`start: ${name}`);
-      fn(CONFIG, function(err) {
+      fn(target, function(err) {
         if (err) {
           cli.error(err);
           return cb(err);
@@ -471,7 +475,7 @@ exports.run = (argv, done) => {
     if (_err) {
       return done(_err);
     }
-    done(null, CONFIG);
+    done(null, target);
   });
 };
 
