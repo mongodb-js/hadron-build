@@ -5,6 +5,7 @@
   "main": "main.js",
   "productName": "Hadron",
   "authors": "MongoDB Inc.",
+  "license": "MIT",
   "config": {
     "hadron": {
       "build": {
