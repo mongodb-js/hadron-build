@@ -10,7 +10,7 @@
  * and include in assets.
  * @see [Atom's dump-symbols-task.coffee](https://git.io/va3fG)
  */
-const config = require('../lib/config');
+const Target = require('../lib/target');
 const cli = require('mongodb-js-cli')('hadron-build:release');
 const util = require('util');
 const format = util.format;
@@ -423,7 +423,8 @@ const createModuleCache = (CONFIG, done) => {
 };
 
 exports.builder = {};
-_.assign(exports.builder, config.options, ui.builder, verify.builder);
+
+_.assign(exports.builder, ui.builder, verify.builder);
 
 exports.run = (argv, done) => {
   cli.argv = argv;
