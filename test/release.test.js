@@ -28,7 +28,7 @@ if (process.platform === 'win32') {
         return this.skip();
       }
 
-      const bin = path.join(`${target.productName}-darwin-x64`, 'Contents', 'MacOS', 'Electron');
+      const bin = target.dest(`${target.productName}-darwin-x64`, `${target.productName}.app`, 'Contents', 'MacOS', 'Electron');
       fs.exists(bin, function(exists) {
         assert(exists, `Expected ${bin} to exist`);
         done();

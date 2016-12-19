@@ -179,7 +179,7 @@ const cleanupBrandedApplicationScaffold = (CONFIG, done) => {
  * @api public
  */
 const writeLicenseFile = (CONFIG, done) => {
-  var LICENSE_DEST = path.join(CONFIG.appPath, '..', 'LICENSE');
+  var LICENSE_DEST = path.join(CONFIG.resources, '..', '..', 'LICENSE');
   var opts = {
     dir: path.join(CONFIG.resources, 'app'),
     production: false,
@@ -210,7 +210,7 @@ const writeLicenseFile = (CONFIG, done) => {
  * @api public
  */
 const writeVersionFile = (CONFIG, done) => {
-  const VERSION_DEST = path.join(CONFIG.appPath, '..', 'version');
+  const VERSION_DEST = path.join(CONFIG.resources, '..', '..', 'version');
   cli.debug(`Writing version file to ${VERSION_DEST}`);
   fs.writeFile(VERSION_DEST, CONFIG.version, function(err) {
     if (err) {
@@ -382,7 +382,7 @@ const createApplicationAsar = (CONFIG, done) => {
  * @param {Function} done
  */
 const createApplicationZip = (CONFIG, done) => {
-  const DIR = CONFIG.appPath;
+  const DIR = path.join(CONFIG.resources, '..');
 
   const OUT = CONFIG.assets.filter(function(asset) {
     return path.extname(asset.path) === '.zip';
