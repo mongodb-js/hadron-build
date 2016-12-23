@@ -26,7 +26,22 @@
           "app_category_type": "public.app-category.productivity"
         },
         "linux": {
-          "icon": "resources/linux/<your-project-id>.png"
+          "icon": "resources/linux/<your-project-id>.png",
+          "debianConfig": {
+            "section": "Databases",
+            "depends": [
+              "python"
+            ],
+            "suggests": [
+              "libgnome-keyring0"
+            ]
+          },
+          "redhatConfig": {
+            "category": "Applications/Databases",
+            "requires": [
+              "libXScrnSaver(x86-64)"
+            ]
+          }
         }
       },
       "endpoint": "<hadron-endpoint-server-url>"
@@ -75,6 +90,16 @@
 ### build.linux
 
 #### build.linux.icon
+
+#### build.linux.debian
+
+Additional options to be passed to 
+https://github.com/unindented/electron-installer-debian#options
+
+#### build.linux.redhat
+
+Additional options to be passed to
+https://github.com/unindented/electron-installer-redhat#options
 
 ## CLI Usage
 
