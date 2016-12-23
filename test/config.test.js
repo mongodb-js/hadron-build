@@ -83,9 +83,9 @@ describe('hadron-build::config', () => {
     const expectLinuxConfig = {
       'bin': 'Hadron',
       'dest': path.join(appDir, 'dist'),
-      'icon':  path.join(appDir, 'resources', 'linux', 'Icon.png'),
+      'icon': path.join(appDir, 'resources', 'linux', 'Icon.png'),
       'name': 'hadron-app',
-      'src':  path.join(appDir, 'dist', 'Hadron-linux-x64')
+      'src': path.join(appDir, 'dist', 'Hadron-linux-x64')
     };
     const expectDebianConfig = Object.assign(
       {},
