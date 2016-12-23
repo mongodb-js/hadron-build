@@ -23,7 +23,22 @@
           "app_category_type": "public.app-category.productivity"
         },
         "linux": {
-          "icon": "resources/linux/Icon.png"
+          "icon": "resources/linux/Icon.png",
+          "debianConfig": {
+            "section": "Databases",
+            "depends": [
+              "python"
+            ],
+            "suggests": [
+              "libgnome-keyring0"
+            ]
+          },
+          "redhatConfig": {
+            "category": "Applications/Databases",
+            "requires": [
+              "libXScrnSaver(x86-64)"
+            ]
+          }
         }
       },
       "endpoint": "https://hadron-app.herokuapp.com",
