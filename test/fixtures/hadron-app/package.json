@@ -34,7 +34,9 @@
             ]
           },
           "redhat_config": {
-            "category": "Applications/Databases",
+            "categories": [
+              "Development"
+            ],
             "requires": [
               "libXScrnSaver(x86-64)"
             ]

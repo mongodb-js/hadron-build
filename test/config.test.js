@@ -107,7 +107,9 @@ describe('hadron-build::config', () => {
       expectLinuxConfig,
       {
         'arch': 'x86_64',
-        'category': 'Applications/Databases',
+        'categories': [
+          'Development'
+        ],
         'requires': [
           'libXScrnSaver(x86-64)'
         ],
