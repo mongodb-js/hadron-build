@@ -27,7 +27,7 @@
         },
         "linux": {
           "icon": "resources/linux/<your-project-id>.png",
-          "debianConfig": {
+          "debian_config": {
             "section": "Databases",
             "depends": [
               "python"
@@ -36,7 +36,7 @@
               "libgnome-keyring0"
             ]
           },
-          "redhatConfig": {
+          "redhat_config": {
             "category": "Applications/Databases",
             "requires": [
               "libXScrnSaver(x86-64)"
