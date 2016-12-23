@@ -4,7 +4,9 @@
   "version": "1.2.0-dev",
   "main": "main.js",
   "productName": "Hadron",
-  "authors": "MongoDB Inc.",
+  "author": {
+    "name": "MongoDB Inc."
+  },
   "license": "MIT",
   "config": {
     "hadron": {
@@ -77,9 +79,6 @@
   "_id": "hadron-app@1.2.0-dev",
   "github_owner": "mongodb-js",
   "github_repo": "hadron-fixture-app",
-  "author": {
-    "name": "MongoDB Inc."
-  },
   "electronVersion": "1.4.12",
   "_compileCacheMappings": {}
 }
