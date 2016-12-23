@@ -77,6 +77,7 @@ describe('hadron-build::config', () => {
       name: 'hadron-app',
       version: '1.2.0',
       product_name: 'Hadron',
+      arch: 'x64',
       platform: 'linux'
     };
     const appDir = path.join(process.cwd(), 'test', 'fixtures', 'hadron-app');
