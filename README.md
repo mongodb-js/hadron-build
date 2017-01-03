@@ -91,12 +91,12 @@
 
 #### build.linux.icon
 
-#### build.linux.debian
+#### build.linux.debian_config
 
 Additional options to be passed to 
 https://github.com/unindented/electron-installer-debian#options
 
-#### build.linux.redhat
+#### build.linux.redhat_config
 
 Additional options to be passed to
 https://github.com/unindented/electron-installer-redhat#options
