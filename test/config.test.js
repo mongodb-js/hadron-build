@@ -130,7 +130,7 @@ describe('hadron-build::config', () => {
       expect(opts).to.have.property('iconUrl');
       expect(opts).to.have.property('appDirectory');
       expect(opts).to.have.property('outputDirectory');
-      expect(opts).to.have.property('authors');
+      expect(opts).to.have.property('author');
       expect(opts).to.have.property('version');
       expect(opts).to.have.property('exe');
       expect(opts).to.have.property('setupExe');
