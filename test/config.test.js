@@ -4,6 +4,7 @@ const _ = require('lodash');
 const chai = require('chai');
 const getConfig = require('./helpers').getConfig;
 const expect = chai.expect;
+const path = require('path');
 
 describe('hadron-build::config', () => {
   describe('Release channel support', () => {
@@ -76,8 +77,47 @@ describe('hadron-build::config', () => {
       name: 'hadron-app',
       version: '1.2.0',
       product_name: 'Hadron',
+      arch: 'x64',
       platform: 'linux'
     };
+    const appDir = path.join(process.cwd(), 'test', 'fixtures', 'hadron-app');
+    const expectLinuxConfig = {
+      'bin': 'Hadron',
+      'dest': path.join(appDir, 'dist'),
+      'icon': path.join(appDir, 'resources', 'linux', 'Icon.png'),
+      'name': 'hadron-app',
+      'src': path.join(appDir, 'dist', 'Hadron-linux-x64')
+    };
+    const expectDebianConfig = Object.assign(
+      {},
+      expectLinuxConfig,
+      {
+        'arch': 'amd64',
+        'section': 'Databases',
+        'depends': [
+          'python'
+        ],
+        'suggests': [
+          'libgnome-keyring0'
+        ],
+        'version': '1.2.0'
+      }
+    );
+    const expectRedHatConfig = Object.assign(
+      {},
+      expectLinuxConfig,
+      {
+        'arch': 'x86_64',
+        'categories': [
+          'Development'
+        ],
+        'requires': [
+          'libXScrnSaver(x86-64)'
+        ],
+        'revision': '1',
+        'version': '1.2.0'
+      }
+    );
 
     const c = getConfig(linux);
     const assetNames = _.map(c.assets, 'name');
@@ -89,8 +129,18 @@ describe('hadron-build::config', () => {
       expect(assetNames).to.contain(c.linux_deb_filename);
     });
 
+    // Would be nicer to test these independently without the fixture,
+    // but not sure how to mock files
+    it('should allow configuring debian_config options', () => {
+      expect(c.debian_config).to.deep.equal(expectDebianConfig);
+    });
+
     it('should produce a redhat package manager asset', () => {
       expect(assetNames).to.include(c.linux_rpm_filename);
+    });
+
+    it('should allow configuring redhat_config options', () => {
+      expect(c.redhat_config).to.deep.equal(expectRedHatConfig);
     });
   });
 
