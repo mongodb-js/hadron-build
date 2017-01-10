@@ -255,7 +255,8 @@ const transformPackageJson = (CONFIG, done) => {
 
   _.assign(contents, {
     productName: CONFIG.productName,
-    channel: CONFIG.channel
+    channel: CONFIG.channel,
+    version: CONFIG.version
   });
 
   fs.writeFile(PACKAGE_JSON_DEST, JSON.stringify(contents, null, 2), done);
