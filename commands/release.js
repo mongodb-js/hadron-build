@@ -396,6 +396,9 @@ const createApplicationAsar = (CONFIG, done) => {
  * @param {Function} done
  */
 const createApplicationZip = (CONFIG, done) => {
+  if (CONFIG.platform === 'linux') {
+    return done();
+  }
   const DIR = path.join(CONFIG.resources, '..');
 
   const OUT = CONFIG.assets.filter(function(asset) {
