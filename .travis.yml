@@ -17,4 +17,4 @@ addons:
       - rpm
       - lintian
 after_success:
-  - lintian test/fixtures/**/*.deb
+  - lintian test/fixtures/hadron-app/dist/*.deb
