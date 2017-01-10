@@ -50,7 +50,7 @@ describe('hadron-build::config', () => {
       });
     });
 
-    describe('Alpha', () => {
+    describe.skip('Alpha', () => {
       process.env.CI = 1;
       const moment = require('moment');
 

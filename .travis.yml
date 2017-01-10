@@ -16,4 +16,4 @@ addons:
     packages:
       - rpm
       # TODO (imlucas) @see https://github.com/mongodb-js/hadron-build/pull/45
-      # - lintian
+      - lintian
