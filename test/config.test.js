@@ -72,7 +72,6 @@ describe('hadron-build::config', () => {
       it('should update channel', () => {
         expect(dev.channel).to.equal('alpha');
       });
-
     });
   });
   describe('Only on macOS', () => {
