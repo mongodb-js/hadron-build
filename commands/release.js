@@ -22,7 +22,7 @@ const _ = require('lodash');
 const async = require('async');
 const asar = require('asar');
 const packager = require('electron-packager');
-const run = require('electron-installer-run');
+const execa = require('execa');
 const zip = require('electron-installer-zip');
 const license = require('electron-license');
 const ModuleCache = require('hadron-module-cache');
@@ -285,10 +285,7 @@ const installDependencies = (CONFIG, done) => {
     env: process.env,
     cwd: path.join(CONFIG.resources, 'app')
   };
-  run('npm', args, opts, function(err) {
-    if (err) {
-      return done(err);
-    }
+  execa('npm', args, opts).catch(done).then(() => {
     cli.debug('Dependencies installed');
     done();
   });
