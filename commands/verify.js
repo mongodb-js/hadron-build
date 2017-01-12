@@ -8,7 +8,7 @@
  */
 const Promise = require('bluebird');
 const semver = require('semver');
-const execa = require('execa');
+const run = Promise.promisify(require('electron-installer-run'));
 const cli = require('mongodb-js-cli')('hadron-build:verify');
 const checkPython = Promise.promisify(require('check-python'));
 
@@ -41,20 +41,21 @@ exports.checkNpmAndNodejsVersions = (opts) => {
   const expectNodeVersion = opts.nodejs_version;
   const expectNpmVersion = opts.npm_version;
   const args = ['version', '--json', '--loglevel', 'error'];
-  return execa('npm', args).then((res) => {
-    const versions = JSON.parse(res.stdout);
+  return run('npm', args, {env: process.env})
+    .then((stdout) => {
+      const versions = JSON.parse(stdout);
 
-    /**
-     * TODO (imlucas) Improve language and provide links to fix issues.
-     */
-    if (!semver.satisfies(versions.node, expectNodeVersion)) {
-      return new Error(`Your current node.js (v${versions.node}) ` +
-        `does not satisfy the version required by this project (v${expectNodeVersion}).`);
-    } else if (!semver.satisfies(versions.npm, expectNpmVersion)) {
-      return new Error(`Your current npm (v${versions.npm}) ` +
-        `does not meet the requirement ${expectNpmVersion}.`);
-    }
+      /**
+       * TODO (imlucas) Improve language and provide links to fix issues.
+       */
+      if (!semver.satisfies(versions.node, expectNodeVersion)) {
+        return new Error(`Your current node.js (v${versions.node}) ` +
+          `does not satisfy the version required by this project (v${expectNodeVersion}).`);
+      } else if (!semver.satisfies(versions.npm, expectNpmVersion)) {
+        return new Error(`Your current npm (v${versions.npm}) ` +
+          `does not meet the requirement ${expectNpmVersion}.`);
+      }
 
-    return versions;
-  });
+      return versions;
+    });
 };
