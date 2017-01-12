@@ -3,12 +3,16 @@ const chai = require('chai');
 const expect = chai.expect;
 
 describe('notary-service', function() {
-  it('should generate the auth token', function() {
-    const secret = '111111111aaaaaA';
-    const now = 1484069135881;
-    const token = notary.generateAuthToken(secret, now);
+  const secret = 'A-------------Z';
+  const now = 1484238590217;
 
+  it('should generate the right salt', function() {
+    expect(notary.getSalt(secret)).to.equal('Z-------------A');
+  });
+
+  it('should generate the auth token', function() {
+    const token = notary.generateAuthToken(secret, now);
     expect(token).to.be.a('string');
-    expect(token).to.equal('878434bdf3930a412a996c8168c11a042be03ed31484069135881');
+    expect(token).to.equal('8628593d83fa61ee5538770de6e2ab98d1d40cbe1484238590217');
   });
 });
