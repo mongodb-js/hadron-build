@@ -1,8 +1,51 @@
-# hadron-build
+# hadron-build [![travis][travis_img]][travis_url] [![npm][npm_img]][npm_url] [![appveyor][appveyor_img]][appveyor_url]
 
 > Complete tooling for large-scale [Electron](http://electron.atom.io/) apps.
 
-[![travis][travis_img]][travis_url] [![npm][npm_img]][npm_url] [![appveyor][appveyor_img]][appveyor_url]
+## Background
+
+> Why does this exist? How did it come to be?
+
+## Commands
+
+```bash
+npm install --save-dev hadron-build;
+```
+
+### `hadron-build verify`
+
+### `hadron-build info`
+
+### `hadron-build test`
+
+### `hadron-build develop`
+
+### `hadron-build clean`
+
+### `hadron-build release`
+
+### `hadron-build upload`
+
+### `hadron-build publish`
+
+## CLI Usage
+
+```bash
+hadron-build <command> [options]
+
+Commands:
+  release            :shipit:
+  clean              Remove generated directories.
+  config             Configuration.
+  develop [options]  Run the app in development mode.
+  test [options]     Run app tests.
+  upload [options]   Upload assets from `release`.
+  ui [options]       Compile the app UI.
+  verify [options]   Verify the current environment meets the app\'s requirements.
+
+Options:
+  --help  Show help                                                    [boolean]
+```
 
 
 ## Configuration
@@ -75,25 +118,6 @@
 ### build.linux
 
 #### build.linux.icon
-
-## CLI Usage
-
-```bash
-hadron-build <command> [options]
-
-Commands:
-  release            :shipit:
-  clean              Remove generated directories.
-  config             Configuration.
-  develop [options]  Run the app in development mode.
-  test [options]     Run app tests.
-  upload [options]   Upload assets from `release`.
-  ui [options]       Compile the app UI.
-  verify [options]   Verify the current environment meets the app\'s requirements.
-
-Options:
-  --help  Show help                                                    [boolean]
-```
 
 ## Important Paths
 
@@ -303,6 +327,13 @@ Which assets are generated depends on the target platform.
 
 ## Todo
 
+- upload (github/s3) refactoring
+- `upload` writes to Atlas 
+- yargs -> commander
+- Docs
+- Changelog generator
+- nightly auto update channel
+- `upload` called and result is all assets needed to release ready? Write manifest to nightly auto update channel
 - `publish` command for setting `draft=true` on GitHub Release and pushing S3 manifest
 - `promote` command based on `lib/railcars`
 - Make `test` use `xvfb-maybe` by default

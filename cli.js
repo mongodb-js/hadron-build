@@ -23,5 +23,4 @@ const yargs = require('yargs')
     yargs.showHelp();
   });
 
-
 yargs.argv;

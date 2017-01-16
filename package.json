@@ -1,7 +1,7 @@
 {
   "name": "hadron-build",
   "description": "Tooling for Hadron apps.",
-  "version": "4.1.3",
+  "version": "5.1.9",
   "scripts": {
     "fmt": "mongodb-js-fmt",
     "check": "mongodb-js-precommit",
@@ -17,7 +17,7 @@
     "url": "git://github.com/mongodb-js/hadron-build.git"
   },
   "dependencies": {
-    "asar": "^0.12.0",
+    "asar": "^0.13.0",
     "async": "^2.0.0-rc.3",
     "aws-sdk": "^2.3.2",
     "bluebird": "^3.3.4",
@@ -25,15 +25,17 @@
     "cli-table": "^0.3.1",
     "debug": "^2.2.0",
     "del": "^2.0.2",
-    "electron-installer-run": "^0.1.2",
+    "electron-installer-run": "^1.0.0",
     "electron-installer-zip": "^0.1.2",
-    "electron-license": "^0.2.0",
+    "electron-license": "^1.0.0",
     "electron-mocha": "^3.1.1",
     "electron-packager": "^8.0.0",
     "electron-packager-plugin-non-proprietary-codecs-ffmpeg": "^1.0.1",
     "electron-prebuilt": "^1.2.8",
+    "execa": "^0.6.0",
     "flatnest": "^1.0.0",
     "fs-extra": "^1.0.0",
+    "getos": "^2.8.4",
     "github": "^8.0.0",
     "glob": "^7.1.1",
     "got": "^6.3.0",
@@ -44,14 +46,17 @@
     "less-cache": "^0.24.0",
     "lodash": "^4.8.2",
     "mocha-evergreen-reporter": "^0.0.7",
+    "moment": "^2.17.1",
     "mongodb-js-cli": "^0.0.3",
+    "mongodb-notary-service-client": "^0.4.6",
     "normalize-package-data": "^2.3.5",
     "parse-github-repo-url": "^1.0.0",
+    "pify": "^2.3.0",
     "semver": "^5.1.0",
     "tar-pack": "^3.3.0",
     "templatizer": "^2.0.3",
     "which": "^1.2.0",
-    "yargs": "^4.4.0"
+    "yargs": "^4.8.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
