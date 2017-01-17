@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-/**
- * TODO (imlucas) Switch from yargs to http://npm.im/commander
- */
+/* eslint no-unused-expressions: 0 */
 
 const cli = require('mongodb-js-cli')('hadron-build');
 const yargs = require('yargs')
@@ -12,7 +10,6 @@ const yargs = require('yargs')
   .command(require('./commands/info'))
   .command(require('./commands/develop'))
   .command(require('./commands/test'))
-  .command(require('./commands/upload'))
   .command(require('./commands/ui'))
   .command(require('./commands/verify'))
   .demand(1, 'Please specify a command.')
@@ -25,4 +22,4 @@ const yargs = require('yargs')
     yargs.showHelp();
   });
 
-cli.debug('parsed argv', yargs.argv);
+yargs.argv;

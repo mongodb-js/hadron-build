@@ -7,7 +7,6 @@ const Promise = require('bluebird');
 const _ = require('lodash');
 const spawn = require('child_process').spawn;
 const ui = require('./ui');
-const verify = require('./verify');
 const cli = require('mongodb-js-cli')('hadron-build:develop');
 const ELECTRON_PREBUILT_EXECUTABLE = require('electron-prebuilt');
 
@@ -28,7 +27,7 @@ exports.builder = {
   }
 };
 
-_.assign(exports.builder, verify.builder, ui.builder);
+_.assign(exports.builder, ui.builder);
 
 exports.tasks = function(argv) {
   process.env.NODE_ENV = 'development';

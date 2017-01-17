@@ -29,7 +29,6 @@ const ModuleCache = require('hadron-module-cache');
 const CompileCache = require('hadron-compile-cache');
 
 const ui = require('./ui');
-const verify = require('./verify');
 
 exports.command = 'release';
 
@@ -451,7 +450,7 @@ exports.builder = {
   }
 };
 
-_.assign(exports.builder, ui.builder, verify.builder);
+_.assign(exports.builder, ui.builder);
 
 exports.run = (argv, done) => {
   cli.argv = argv;
@@ -473,8 +472,7 @@ exports.run = (argv, done) => {
 
   const tasks = _.flatten([
     function(cb) {
-      verify.tasks(argv)
-        .then(() => ui.tasks(argv))
+      ui.tasks(argv)
         .then(() => cb())
         .catch(cb);
     },
@@ -491,7 +489,23 @@ exports.run = (argv, done) => {
     task('remove development files', removeDevelopmentFiles),
     task('create application asar', createApplicationAsar),
     task('create branded installer', createBrandedInstaller),
-    task('create application zip', createApplicationZip)
+    task('create application zip', createApplicationZip),
+    function(cb) {
+      const downloadCenter = require('../lib/download-center');
+      const github = require('../lib/github');
+
+      target.assets = target.assets.filter(function(asset) {
+        var exists = fs.existsSync(asset.path);
+        if (!exists) {
+          cli.warn(`Excluding ${asset.path} from upload because it does not exist.`);
+        }
+        return exists;
+      });
+      github.upload(target)
+        .then(() => downloadCenter.maybeUpload(target))
+        .then(() => cb())
+        .catch(cb);
+    }
   ]);
 
   return async.series(tasks, (_err) => {

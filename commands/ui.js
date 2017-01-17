@@ -1,10 +1,10 @@
 'use strict';
 
-const Promise = require('bluebird');
+const pify = require('pify');
 const path = require('path');
 const LessCache = require('less-cache');
 const fs = require('fs-extra');
-const read = Promise.promisify(fs.readFile);
+const read = pify(fs.readFile);
 
 const cli = require('mongodb-js-cli')('hadron-build:ui');
 const abortIfError = cli.abortIfError.bind(cli);
@@ -57,7 +57,7 @@ const generateLessHelpCache = (opts) => {
       resolve();
     });
   }
-  
+
   if (!opts.less_cache) {
     cli.warn('`less_cache` config option not set! skipping');
     return new Promise(function(resolve) {
