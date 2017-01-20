@@ -19,7 +19,7 @@
   "dependencies": {
     "asar": "^0.13.0",
     "async": "^2.0.0-rc.3",
-    "aws-sdk": "^2.3.2",
+    "aws-sdk": "^2.7.27",
     "bluebird": "^3.3.4",
     "check-python": "^1.0.0",
     "cli-table": "^0.3.1",
