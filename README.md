@@ -27,16 +27,13 @@ Tests are organized in test suites. Currently supported test suites are
 - `renderer`: Electron-specific tests run in the renderer process
 - `functional`: Slow functional test using [Spectron](https://github.com/electron/spectron) (launches the application)
 
-With no additional arguments, all test suites are run in this order.
+With no additional arguments, all test suites (except `packages`) are run in this order.
 
-A subset of test suites can be executed via command line flags.
-
-If you only want to run the unit and enzyme tests:
+A subset of test suites can be executed via command line flags. If you only want
+to run the unit and enzyme tests:
 ```
 hadron-build test --unit --enzyme
 ```
-
-
 
 Each test suite is executed in its own process.
 
