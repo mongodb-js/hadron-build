@@ -1,5 +1,4 @@
 const zip = require('../lib/zip');
-const path = require('path');
 const getTarget = require('./helpers').getConfig;
 const chai = require('chai');
 const expect = chai.expect;
