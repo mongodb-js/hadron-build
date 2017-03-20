@@ -42,7 +42,7 @@
     "hadron-module-cache": "^0.0.4",
     "in-publish": "^2.0.0",
     "js-yaml": "^3.5.4",
-    "less-cache": "^0.24.0",
+    "less-cache": "^1.1.0",
     "lodash": "^4.8.2",
     "mocha-evergreen-reporter": "^0.0.7",
     "moment": "^2.17.1",
