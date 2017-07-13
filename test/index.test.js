@@ -92,7 +92,6 @@ describe('hadron-build', () => {
         expect(commands.test.getSpawnJobs(argv)).to.deep.equal({
           unit: ['--sort', './test/unit'],
           enzyme: ['--sort', './test/enzyme'],
-          packages: ['--sort', '--recursive', './src/internal-packages'],
           main: ['--sort', './test/main'],
           renderer: ['--sort', '--renderer', './test/renderer'],
           functional: ['--sort', './test/functional']
