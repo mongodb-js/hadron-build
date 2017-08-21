@@ -39,7 +39,7 @@ if (process.platform === 'win32') {
       assert.equal(target.productName, 'MongoDB Compass Enterprise super long test name Beta');
     });
 
-    it('sets the correct CFBundleIdentifier', () => {
+    it('sets the correct CFBundleIdentifier', function() {
       if (target.platform !== 'darwin') {
         return this.skip();
       }
