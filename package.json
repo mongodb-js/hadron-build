@@ -52,7 +52,7 @@
     "node-abi": "^2.11.0",
     "normalize-package-data": "^2.3.5",
     "parse-github-repo-url": "^1.0.0",
-    "semver": "^5.1.0",
+    "semver": "^7.1.2",
     "tar-pack": "^3.3.0",
     "which": "^1.2.0",
     "xvfb-maybe": "^0.2.1",
