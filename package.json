@@ -63,7 +63,7 @@
     "eslint-config-mongodb-js": "^2.2.0",
     "mocha": "^7.0.1",
     "mongodb-js-precommit": "^2.2.0",
-    "plist": "^2.1.0",
+    "plist": "^3.0.1",
     "sinon": "^4.5.0",
     "sinon-chai": "^2.8.0"
   },
