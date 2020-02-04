@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "asar": "^1.0.0",
-    "async": "^2.1.4",
+    "async": "^3.1.1",
     "aws-sdk": "^2.3.2",
     "bluebird": "^3.3.4",
     "cli-table": "^0.3.1",
