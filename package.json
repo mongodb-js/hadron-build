@@ -36,7 +36,7 @@
     "flatnest": "^1.0.0",
     "fs-extra": "^8.1.0",
     "getos": "^3.1.4",
-    "github": "^7.1.0",
+    "github": "^14.0.0",
     "glob": "^7.1.1",
     "got": "^10.4.0",
     "hadron-compile-cache": "^3.0.1",
