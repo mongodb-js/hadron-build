@@ -20,6 +20,7 @@
     "async": "^3.1.1",
     "aws-sdk": "^2.611.0",
     "bluebird": "^3.7.2",
+    "chalk": "^4.1.0",
     "cli-table": "^0.3.1",
     "debug": "^4.1.1",
     "del": "^2.0.2",
@@ -32,6 +33,7 @@
     "electron-packager-plugin-non-proprietary-codecs-ffmpeg": "^1.0.2",
     "electron-rebuild": "^1.10.0",
     "execa": "^0.6.0",
+    "figures": "^3.2.0",
     "flatnest": "^1.0.0",
     "fs-extra": "^8.1.0",
     "getos": "^3.1.4",
@@ -70,7 +72,6 @@
   },
   "optionalDependencies": {
     "@mongodb-js/electron-wix-msi": "^2.1.20",
-    "electron-installer-codesign": "^0.6.0",
     "electron-installer-debian": "^3.0.0",
     "electron-installer-dmg": "^3.0.0",
     "electron-installer-redhat": "^2.0.0",

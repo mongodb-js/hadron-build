@@ -10,12 +10,14 @@ const getConfig = require('./helpers').getConfig;
 if (process.platform === 'win32') {
   // Functional tests on appveyor too slow. Skipping.
 } else {
-  describe('hadron-build::release', function() {
+  describe.only('hadron-build::release', function() {
     this.timeout(300000);
     var target = null;
 
     before(function(done) {
       fs.remove(path.join(__dirname, 'fixtures', 'hadron-app', 'dist'), (_err) => {
+        console.log('HERE!');
+
         if (_err) {
           return done(_err);
         }
