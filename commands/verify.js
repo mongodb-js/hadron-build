@@ -1,15 +1,13 @@
-'use strict';
-
 /**
  * Wouldn't it be great if you or a CI system were notified properly
  * that you aren't using the right version of node.js or npm?
  *
  * @see https://github.com/atom/atom/blob/master/script/utils/verify-requirements.js
  */
-const Promise = require('bluebird');
+
 const semver = require('semver');
-const run = Promise.promisify(require('electron-installer-run'));
 const cli = require('mongodb-js-cli')('hadron-build:verify');
+const { execFileSync } = require('child_process');
 
 exports.command = 'verify [options]';
 exports.describe = 'Verify the current environment meets the app\'s requirements.';
@@ -33,25 +31,21 @@ exports.handler = (argv) => {
   exports.tasks(argv).catch((err) => cli.abortIfError(err));
 };
 
-exports.checkNpmAndNodejsVersions = (opts) => {
+exports.checkNpmAndNodejsVersions = async(opts) => {
   const expectNodeVersion = opts.nodejs_version;
   const expectNpmVersion = opts.npm_version;
   const args = ['version', '--json', '--loglevel', 'error'];
-  return run('npm', args, {env: process.env})
-    .then((stdout) => {
-      const versions = JSON.parse(stdout);
 
-      /**
-       * TODO (imlucas) Improve language and provide links to fix issues.
-       */
-      if (!semver.satisfies(versions.node, expectNodeVersion)) {
-        return new Error(`Your current node.js (v${versions.node}) ` +
-          `does not satisfy the version required by this project (v${expectNodeVersion}).`);
-      } else if (!semver.satisfies(versions.npm, expectNpmVersion)) {
-        return new Error(`Your current npm (v${versions.npm}) ` +
-          `does not meet the requirement ${expectNpmVersion}.`);
-      }
+  const stdout = execFileSync('npm', args, {env: process.env}).toString().trim();
+  const versions = JSON.parse(stdout);
 
-      return versions;
-    });
+  if (!semver.satisfies(versions.node, expectNodeVersion)) {
+    return new Error(`Your current node.js (v${versions.node}) ` +
+      `does not satisfy the version required by this project (v${expectNodeVersion}).`);
+  } else if (!semver.satisfies(versions.npm, expectNpmVersion)) {
+    return new Error(`Your current npm (v${versions.npm}) ` +
+      `does not meet the requirement ${expectNpmVersion}.`);
+  }
+
+  return versions;
 };

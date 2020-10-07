@@ -44,6 +44,7 @@ if (process.platform === 'win32') {
         return this.skip();
       }
       const info = target.dest(`${target.productName}-darwin-x64`, `${target.productName}.app`, 'Contents', 'Info.plist');
+      // eslint-disable-next-line no-sync
       const config = plist.parse(fs.readFileSync(info, 'utf8'));
       assert.equal(config.CFBundleIdentifier, 'com.mongodb.hadron-testing.beta');
     });
