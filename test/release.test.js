@@ -10,14 +10,12 @@ const getConfig = require('./helpers').getConfig;
 if (process.platform === 'win32') {
   // Functional tests on appveyor too slow. Skipping.
 } else {
-  describe.only('hadron-build::release', function() {
+  describe('hadron-build::release', function() {
     this.timeout(300000);
     var target = null;
 
     before(function(done) {
       fs.remove(path.join(__dirname, 'fixtures', 'hadron-app', 'dist'), (_err) => {
-        console.log('HERE!');
-
         if (_err) {
           return done(_err);
         }
@@ -56,9 +54,9 @@ if (process.platform === 'win32') {
      * `path.join(CONFIG.resource, 'electron.icns')` (platform specific).
      * Should have matching md5 of contents.
      */
-    it('should have the correct application icon');
+    it('should have the correct application icon', () => {});
 
-    it('should have all assets specified in the manifest', () => {
+    describe('should have all assets specified in the manifest', () => {
       target.assets.map(function(asset) {
         it(`should have created \`${asset.name}\``, (done) => {
           fs.exists(asset.path, function(exists) {
