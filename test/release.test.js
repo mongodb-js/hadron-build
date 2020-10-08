@@ -56,13 +56,8 @@ if (process.platform === 'win32') {
     it('should have the correct application icon');
 
     it('should have all assets specified in the manifest', () => {
-      target.assets.map(function(asset) {
-        it(`should have created \`${asset.name}\``, (done) => {
-          fs.exists(asset.path, function(exists) {
-            assert(exists, `Asset file should exist at ${asset.path}`);
-            done();
-          });
-        });
+      target.assets.forEach(function(asset) {
+        assert(fs.existsSync(asset.path), `Asset file should exist at ${asset.path}`);
       });
     });
   });
