@@ -56,9 +56,14 @@ if (process.platform === 'win32') {
     it('should have the correct application icon');
 
     it('should have all assets specified in the manifest', () => {
-      target.assets.forEach(function(asset) {
-        assert(fs.existsSync(asset.path), `Asset file should exist at ${asset.path}`);
-      });
+      const missing = target.assets.map(function(asset) {
+        // eslint-disable-next-line no-sync
+        return [asset.path, fs.existsSync(asset.path)];
+      })
+        .filter(([, existing]) => !existing)
+        .map(([assetPath]) => assetPath);
+
+      assert.deepStrictEqual(missing, []);
     });
   });
 }
