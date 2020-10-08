@@ -57,10 +57,17 @@ if (process.platform === 'win32') {
     it('should have the correct application icon', () => {});
 
     it('should have all assets specified in the manifest', () => {
-      target.assets.forEach(function(asset) {
+      const missing = target.assets.map(function(asset) {
+        console.log(asset.path);
         // eslint-disable-next-line no-sync
-        assert(fs.existsSync(asset.path), `Asset file should exist at ${asset.path}`);
-      });
+        return [asset.path, fs.existsSync(asset.path)];
+      })
+        // .deb is optional, not all the environment can build it
+        .filter(([assetPath]) => !assetPath.endsWith('.deb'))
+        .filter(([, existing]) => !existing)
+        .map(([assetPath]) => assetPath);
+
+      assert.deepStrictEqual(missing, []);
     });
   });
 }
