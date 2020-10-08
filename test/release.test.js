@@ -58,7 +58,6 @@ if (process.platform === 'win32') {
 
     it('should have all assets specified in the manifest', () => {
       const missing = target.assets.map(function(asset) {
-        console.log(asset.path);
         // eslint-disable-next-line no-sync
         return [asset.path, fs.existsSync(asset.path)];
       })
