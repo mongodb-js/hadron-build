@@ -35,7 +35,7 @@ async function getTargetZipEntries(target) {
   const zipContent = await JSZip.loadAsync(file);
 
   return Object.values(zipContent.files).map(entry => _.pick(entry, [
-    'name', 'dir', 'unixPermissions', 'dosPermissions'
+    'name', 'dir'
   ]));
 }
 
@@ -74,15 +74,11 @@ describe('zip', function() {
       expect(entries).to.deep.equal([
         {
           name: 'MongoDB Compass Enterprise super long test name.app/',
-          dir: true,
-          unixPermissions: 16877,
-          dosPermissions: null
+          dir: true
         },
         {
           name: 'MongoDB Compass Enterprise super long test name.app/file',
-          dir: false,
-          unixPermissions: 33188,
-          dosPermissions: null
+          dir: false
         }
       ]);
     });
@@ -101,9 +97,7 @@ describe('zip', function() {
       expect(entries).to.deep.equal([
         {
           name: 'file',
-          dir: false,
-          unixPermissions: 33188,
-          dosPermissions: null
+          dir: false
         }
       ]);
     });
