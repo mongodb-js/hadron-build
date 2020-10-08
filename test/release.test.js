@@ -56,13 +56,11 @@ if (process.platform === 'win32') {
      */
     it('should have the correct application icon', () => {});
 
-    it('should have all assets specified in the manifest', () => {
+    it.skip('should have all assets specified in the manifest', () => {
       const missing = target.assets.map(function(asset) {
         // eslint-disable-next-line no-sync
         return [asset.path, fs.existsSync(asset.path)];
       })
-        // .deb is optional, not all the environment can build it
-        .filter(([assetPath]) => !assetPath.endsWith('.deb'))
         .filter(([, existing]) => !existing)
         .map(([assetPath]) => assetPath);
 
