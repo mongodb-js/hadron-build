@@ -18,7 +18,7 @@
   "dependencies": {
     "asar": "^3.0.3",
     "async": "^3.1.1",
-    "aws-sdk": "^2.611.0",
+    "aws-sdk": "^2.776.0",
     "bluebird": "^3.7.2",
     "chalk": "^4.1.0",
     "cli-table": "^0.3.1",
