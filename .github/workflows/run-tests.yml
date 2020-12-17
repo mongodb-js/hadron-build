@@ -25,13 +25,7 @@ jobs:
 
       - if: matrix.os == 'ubuntu-latest'
         name: Install Deps Ubuntu
-        run: |
-          sudo apt-get -y install
-            libkrb5-dev
-            libsecret-1-dev
-            net-tools
-            lintian
-            rpm
+        run: sudo apt-get -y install libkrb5-dev libsecret-1-dev net-tools lintian rpm
 
       - name: Install NPM Packages
         run: npm ci
