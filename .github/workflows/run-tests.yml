@@ -6,18 +6,16 @@ on:
   pull_request:
 
 jobs:
-  runs-on: ${{ matrix.os }}
-  strategy:
-    matrix:
-      os: [
-        ubuntu-latest,
-        windows-latest,
-        macOS-latest
-      ]
-
   check-and-test:
     name: Check and Test
-    runs-on: ubuntu-20.04
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [
+          ubuntu-latest,
+          windows-latest,
+          macOS-latest
+        ]
 
     steps:
       - uses: actions/checkout@v2
