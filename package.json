@@ -4,8 +4,7 @@
   "version": "23.3.4",
   "scripts": {
     "check": "mongodb-js-precommit",
-    "test": "mocha -R spec",
-    "ci": "npm run check && npm test"
+    "test": "mocha -R spec"
   },
   "bin": {
     "hadron-build": "./cli.js"
