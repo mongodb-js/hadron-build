@@ -35,6 +35,10 @@ jobs:
         run: |
           npm run check
           npm run test
-# lintian test/fixtures/hadron-app/dist/*.deb
+
+      - if: matrix.os == 'ubuntu-latest'
+        name: Validate deb
+        run: |
+          lintian test/fixtures/hadron-app/dist/*.deb
 
 
