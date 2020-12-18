@@ -36,9 +36,9 @@ jobs:
           npm run check
           npm run test
 
-      - if: matrix.os == 'ubuntu-latest'
-        name: Validate deb
-        run: |
-          lintian -X missing-dependency-on-libc test/fixtures/hadron-app/dist/*.deb
+      # - if: matrix.os == 'ubuntu-latest'
+      #   name: Validate deb
+      #   run: |
+      #     lintian test/fixtures/hadron-app/dist/*.deb
 
 
