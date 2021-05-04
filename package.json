@@ -63,7 +63,7 @@
     "tar-pack": "^3.3.0",
     "which": "^2.0.2",
     "xvfb-maybe": "^0.2.1",
-    "yargs": "^4.8.1",
+    "yargs": "^17.0.1",
     "zip-folder": "^1.0.0"
   },
   "devDependencies": {
